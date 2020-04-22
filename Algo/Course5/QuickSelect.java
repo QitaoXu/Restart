@@ -11,6 +11,12 @@ public class QuickSelect {
         
         return quickSelectKthSmallest(nums, 0, nums.length - 1, k);
     }
+
+    public int kthLargest(int k, int[] nums) {
+        // write your code here
+        
+        return quickSelectKthLargest(nums, 0, nums.length - 1, k);
+    }
     
     private int quickSelectKthSmallest(int[] nums, int start, int end, int k) {
         
