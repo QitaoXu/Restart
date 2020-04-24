@@ -38,13 +38,17 @@ class Item implements Comparable<Item> {
 }
 
 public class MergeKSortedLists {
+
+    public ListNode mergeKListsII(ListNode[] lists) {
+         if (lists == null || lists.length == 0) {
+            return null;
+        }
+        
+        return mergeKListsHelper(lists, 0, lists.length - 1);
+
+    }
+    
     public ListNode mergeKLists(ListNode[] lists) {
-        
-        // if (lists == null || lists.length == 0) {
-        //     return null;
-        // }
-        
-        // return mergeKListsHelper(lists, 0, lists.length - 1);
         
         if (lists == null || lists.length == 0) {
             return null;
