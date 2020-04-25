@@ -1,0 +1,29 @@
+package Interview.FB;
+import java.util.*; 
+
+public class IntervalListIntersection {
+    public int[][] intervalIntersection(int[][] A, int[][] B) {
+        
+        List<int[]> ans = new ArrayList<int[]>();
+        
+        int i = 0, j = 0; 
+        
+        while (i < A.length && j < B.length) {
+            
+            int low = Math.max(A[i][0], B[j][0]);
+            int high = Math.min(A[i][1], B[j][1]);
+            
+            if (low <= high)
+                ans.add(new int[]{low, high});
+            
+            if (A[i][1] < B[j][1])
+                i++;
+            else
+                j++;
+        }
+        
+        return ans.toArray(new int[ans.size()][]);
+    }
+    
+    
+}
