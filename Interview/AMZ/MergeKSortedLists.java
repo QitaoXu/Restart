@@ -2,7 +2,7 @@ package Interview.AMZ;
 
 import java.util.*; 
 
-class Solution {
+public class MergeKSortedLists {
 
     class ListNode {
         ListNode next;

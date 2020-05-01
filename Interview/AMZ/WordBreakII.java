@@ -7,7 +7,7 @@ public class WordBreakII {
         Trie trie = new Trie(); 
         
         for (String word : wordDict) {
-            trie.add(word);
+            trie.insert(word);
         }
         
         List<String> combination = new ArrayList<String>(); 

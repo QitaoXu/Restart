@@ -19,7 +19,7 @@ class Trie {
         this.root = new TrieNode();
     }
     
-    public void add(String word) {
+    public void insert(String word) {
         
         TrieNode node = this.root; 
         char[] wa = word.toCharArray(); 
@@ -73,7 +73,7 @@ public class WordBreakI {
         
         Trie trie = new Trie(); 
         for (String word : wordDict) {
-            trie.add(word);
+            trie.insert(word);
         }
         
         int startIndex = 0;
