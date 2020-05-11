@@ -6,20 +6,20 @@ public class LargestPathSumInMatrix {
 
 
         int m = matrix.length, n = matrix[0].length;
-        boolean[][] visited = new boolean[m][m];
+        boolean[][] visited = new boolean[m][n];
         int[][] memo = new int[m][n];
         int res = Integer.MIN_VALUE;
 
         for (int i = 0; i < m; i++) {
             for (int j = 0; j < n; j++) {
-                boolean[][] seen = new boolean[m][n];
-                res = Math.max(res, dfs(matrix, i, j, memo, visited, seen));
+                
+                res = Math.max(res, dfs(matrix, i, j, memo, visited));
             }
         }
         return res;
     }
 
-    private int dfs(int[][] matrix, int x, int y, int[][] memo, boolean[][] visited, boolean[][] seen) {
+    private int dfs(int[][] matrix, int x, int y, int[][] memo, boolean[][] visited) {
 
         if (visited[x][y] == true)
             return memo[x][y]; 
@@ -34,12 +34,11 @@ public class LargestPathSumInMatrix {
             int nx = x + dx[d]; 
             int ny = y + dy[d];
 
-            if (nx < 0 || nx >= m || ny < 0 || ny >= n || seen[nx][ny] == true)
+            if (nx < 0 || nx >= m || ny < 0 || ny >= n || matrix[nx][ny] <= matrix[x][y])
                 continue;
 
-            seen[nx][ny] = true;
-            res = Math.max(res, matrix[x][y] + dfs(matrix, nx, ny, memo, visited, seen));
-            seen[nx][ny] = false;
+            res = Math.max(res, matrix[x][y] + dfs(matrix, nx, ny, memo, visited));
+        
         }
 
         memo[x][y] = res;
