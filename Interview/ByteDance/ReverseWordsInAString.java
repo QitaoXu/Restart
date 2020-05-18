@@ -1,0 +1,18 @@
+package Interview.ByteDance;
+
+
+class ReverseWordsInAString {
+    public String reverseWords(String s) {
+        
+        String[] tokens = s.split("\\s+");
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for (int i = tokens.length - 1; i >= 0; i--) {
+            
+            sb.append(tokens[i] + " ");
+        }
+        
+        return sb.toString().trim();
+    }
+}
