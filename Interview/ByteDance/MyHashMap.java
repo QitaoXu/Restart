@@ -13,29 +13,29 @@ class Pair<U, V> {
     }
 }
 
-class Bucket {
+class Bucket<U, V> {
     
-    private List<Pair<Integer, Integer>> bucket;
+    private List<Pair<U, V>> bucket;
     
     public Bucket() {
-        this.bucket = new LinkedList<Pair<Integer, Integer>>();
+        this.bucket = new LinkedList<Pair<U, V>>();
     }
     
-    public Integer get(Integer key) {
+    public V get(U key) {
         
-        for (Pair<Integer, Integer> pair : bucket) {
+        for (Pair<U, V> pair : bucket) {
             if (pair.first.equals(key)) {
                 return pair.second;
             }
         }
         
-        return -1;
+        return null;
     }
     
-    public void update(Integer key, Integer val) {
+    public void update(U key, V val) {
         boolean found = false; 
         
-        for (Pair<Integer, Integer> pair : bucket) {
+        for (Pair<U, V> pair : bucket) {
             if (pair.first.equals(key)) {
                 pair.second = val; 
                 found = true;
@@ -44,13 +44,13 @@ class Bucket {
         }
         
         if (!found) {
-            bucket.add(new Pair<Integer, Integer>(key, val));
+            bucket.add(new Pair<U, V>(key, val));
         }
     }
     
-    public void remove(Integer key) {
+    public void remove(U key) {
         
-        for (Pair<Integer, Integer> pair : bucket) {
+        for (Pair<U, V> pair : bucket) {
             
             if (pair.first.equals(key)) {
                 bucket.remove(pair);
@@ -60,42 +60,42 @@ class Bucket {
     }
 }
 
-public class MyHashMap {
+public class MyHashMap<U, V> {
     
-    private List<Bucket> hashTable;
+    private List<Bucket<U, V>> hashTable;
     private int keySpace;
 
     /** Initialize your data structure here. */
     public MyHashMap() {
         
         this.keySpace = 2069; 
-        this.hashTable = new ArrayList<Bucket>(); 
+        this.hashTable = new ArrayList<Bucket<U, V>>(); 
         
         for (int i = 0; i < 2069; i++) {
-            this.hashTable.add(new Bucket());
+            this.hashTable.add(new Bucket<U, V>());
         }
         
     }
     
     /** value will always be non-negative. */
-    public void put(int key, int value) {
+    public void put(U key, V value) {
         
-        int hashKey = key % this.keySpace; 
+        int hashKey = key.hashCode() % this.keySpace; 
         this.hashTable.get(hashKey).update(key, value);
         
     }
     
     /** Returns the value to which the specified key is mapped, or -1 if this map contains no mapping for the key */
-    public int get(int key) {
+    public int get(U key) {
         
-        int hashKey = key % this.keySpace;
-        return this.hashTable.get(hashKey).get(key);
+        int hashKey = key.hashCode() % this.keySpace;
+        return this.hashTable.get(hashKey).get(key) == null ? -1 : (int)this.hashTable.get(hashKey).get(key);
         
     }
     
     /** Removes the mapping of the specified value key if this map contains a mapping for the key */
-    public void remove(int key) {
-        int hashKey = key % this.keySpace; 
+    public void remove(U key) {
+        int hashKey = key.hashCode() % this.keySpace; 
         this.hashTable.get(hashKey).remove(key);
     }
 }
