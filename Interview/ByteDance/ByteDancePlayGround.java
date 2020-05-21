@@ -33,6 +33,12 @@ public class ByteDancePlayGround {
         AddStringsII asII = new AddStringsII();
         System.out.println(asII.addStringsII(num1, num2));
 
+        FindX findX = new FindX(); 
+
+        int[] test = {4 , 3, 1, 2}; 
+
+        System.out.println(findX.findX(test));
+
         // int[][] matrix = {{1, 2, 4, 5}, {2, 7, 5, 4}};
         // LargestPathSumInMatrix lps = new LargestPathSumInMatrix();
         // System.out.println(lps.largestPathSumInMatrix(matrix));
